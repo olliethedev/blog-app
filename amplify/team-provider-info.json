@@ -10,6 +10,20 @@
       "StackName": "amplify-blogapp-dev-201324",
       "StackId": "arn:aws:cloudformation:us-east-1:446581856886:stack/amplify-blogapp-dev-201324/708a4730-b3e0-11ed-898b-0eaf0ca7fa49",
       "AmplifyAppId": "d2tz5ju73payus"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2tz5ju73payus",
+          "type": "cicd"
+        }
+      },
+      "api": {
+        "blogapp": {}
+      },
+      "auth": {
+        "blogapp": {}
+      }
     }
   }
 }
