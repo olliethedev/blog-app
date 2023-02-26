@@ -8,3 +8,10 @@ body{
 .amplify-collection{
   width: 100%!important;
 }
+
+.blog-card:hover{
+  transform: scale(1.005);
+  transition: 0.1s;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2)!important;
+}

@@ -1,6 +1,6 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
-import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@aws-amplify/datastore";
+import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
 
 
 
@@ -13,7 +13,7 @@ type EagerBlog = {
   };
   readonly id: string;
   readonly name: string;
-  readonly posts?: (Post | null)[] | null;
+  readonly Posts?: (Post | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -25,7 +25,7 @@ type LazyBlog = {
   };
   readonly id: string;
   readonly name: string;
-  readonly posts: AsyncCollection<Post>;
+  readonly Posts: AsyncCollection<Post>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -43,11 +43,11 @@ type EagerPost = {
   };
   readonly id: string;
   readonly title: string;
-  readonly blog?: Blog | null;
-  readonly comments?: (Comment | null)[] | null;
+  readonly content: string;
+  readonly blogID: string;
+  readonly Comments?: (Comment | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly blogPostsId?: string | null;
 }
 
 type LazyPost = {
@@ -57,11 +57,11 @@ type LazyPost = {
   };
   readonly id: string;
   readonly title: string;
-  readonly blog: AsyncItem<Blog | undefined>;
-  readonly comments: AsyncCollection<Comment>;
+  readonly content: string;
+  readonly blogID: string;
+  readonly Comments: AsyncCollection<Comment>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly blogPostsId?: string | null;
 }
 
 export declare type Post = LazyLoading extends LazyLoadingDisabled ? EagerPost : LazyPost
@@ -76,11 +76,10 @@ type EagerComment = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly post?: Post | null;
   readonly content: string;
+  readonly postID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly postCommentsId?: string | null;
 }
 
 type LazyComment = {
@@ -89,11 +88,10 @@ type LazyComment = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly post: AsyncItem<Post | undefined>;
   readonly content: string;
+  readonly postID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly postCommentsId?: string | null;
 }
 
 export declare type Comment = LazyLoading extends LazyLoadingDisabled ? EagerComment : LazyComment

@@ -6,25 +6,51 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps, IconProps, ImageProps, SearchFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, FlexProps, IconProps, SearchFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type NavBarOverridesProps = {
     NavBar?: PrimitiveOverrideProps<FlexProps>;
-    Logo29767073?: PrimitiveOverrideProps<FlexProps>;
-    "Star 1"?: PrimitiveOverrideProps<IconProps>;
-    Logo29767075?: PrimitiveOverrideProps<TextProps>;
-    "Frame 32129767076"?: PrimitiveOverrideProps<FlexProps>;
-    Dashboard?: PrimitiveOverrideProps<TextProps>;
-    Jobs?: PrimitiveOverrideProps<TextProps>;
-    Applicants?: PrimitiveOverrideProps<TextProps>;
-    Company?: PrimitiveOverrideProps<TextProps>;
-    "Frame 32129767081"?: PrimitiveOverrideProps<FlexProps>;
+    ControlsLayout?: PrimitiveOverrideProps<FlexProps>;
+    LogoLayout?: PrimitiveOverrideProps<FlexProps>;
+    Logo?: PrimitiveOverrideProps<FlexProps>;
+    "market 1"?: PrimitiveOverrideProps<ViewProps>;
+    "Page-1"?: PrimitiveOverrideProps<ViewProps>;
+    "041---Books"?: PrimitiveOverrideProps<ViewProps>;
+    Shape36602555?: PrimitiveOverrideProps<IconProps>;
+    Shape36602556?: PrimitiveOverrideProps<IconProps>;
+    "Rectangle-path36602557"?: PrimitiveOverrideProps<IconProps>;
+    "Rectangle-path36602558"?: PrimitiveOverrideProps<IconProps>;
+    "Rectangle-path36602559"?: PrimitiveOverrideProps<IconProps>;
+    "Rectangle-path36602560"?: PrimitiveOverrideProps<IconProps>;
+    "Rectangle-path36602561"?: PrimitiveOverrideProps<IconProps>;
+    "Rectangle-path36602562"?: PrimitiveOverrideProps<IconProps>;
+    "Rectangle-path36602563"?: PrimitiveOverrideProps<IconProps>;
+    "Rectangle-path36602564"?: PrimitiveOverrideProps<IconProps>;
+    Oval?: PrimitiveOverrideProps<IconProps>;
+    Group?: PrimitiveOverrideProps<ViewProps>;
+    "Rectangle-path36602567"?: PrimitiveOverrideProps<IconProps>;
+    "Rectangle-path36602568"?: PrimitiveOverrideProps<IconProps>;
+    Name?: PrimitiveOverrideProps<TextProps>;
+    MobileAddNewButton?: PrimitiveOverrideProps<ButtonProps>;
+    SearchInput?: PrimitiveOverrideProps<FlexProps>;
     SearchField?: PrimitiveOverrideProps<SearchFieldProps>;
-    Icon?: PrimitiveOverrideProps<ViewProps>;
-    Vector?: PrimitiveOverrideProps<IconProps>;
-    image?: PrimitiveOverrideProps<ImageProps>;
+    ButtonsLayout?: PrimitiveOverrideProps<FlexProps>;
+    AddNewButton?: PrimitiveOverrideProps<ButtonProps>;
+    CategoriesLayout?: PrimitiveOverrideProps<FlexProps>;
+    LinksLayout?: PrimitiveOverrideProps<FlexProps>;
+    KitchenLink?: PrimitiveOverrideProps<ButtonProps>;
+    ElectronicsLink?: PrimitiveOverrideProps<ButtonProps>;
+    BooksLink?: PrimitiveOverrideProps<ButtonProps>;
+    ClothingLink?: PrimitiveOverrideProps<ButtonProps>;
+    CareLink?: PrimitiveOverrideProps<ButtonProps>;
+    SportsLink?: PrimitiveOverrideProps<ButtonProps>;
+    "Line 2"?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
 export declare type NavBarProps = React.PropsWithChildren<Partial<FlexProps> & {
+    linksLayout?: React.ReactNode;
+} & {
+    breakpoint?: "medium" | "small";
+} & {
     overrides?: NavBarOverridesProps | undefined | null;
 }>;
 export default function NavBar(props: NavBarProps): React.ReactElement;

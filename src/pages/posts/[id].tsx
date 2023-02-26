@@ -1,17 +1,26 @@
-import { Blog } from "@/API";
+import React from "react";
+import Head from "next/head";
+import { Blog, GetBlogQuery, Post } from "@/API";
 import {
-  BlogCardCollection,
   NavBar,
   NavLinkButtonCollection,
   PageContent,
+  PostCardCollection,
 } from "@/ui-components";
-import Head from "next/head";
+import { GetServerSidePropsContext } from "next";
+import { getBlog } from "@/graphql/queries";
+import { API, GraphQLResult } from "@aws-amplify/api";
 
-export default function Home() {
+interface Props {
+  blog: Blog;
+}
+
+export default function BlogDetail({ blog }: Props) {
+  const title = `${blog?.name} | Blog App`;
   return (
     <>
       <Head>
-        <title>Blog App</title>
+        <title>{title}</title>
         <meta
           name="description"
           content="Example Blog App built with AWS Amplify"
@@ -58,27 +67,29 @@ export default function Home() {
               margin: "5px auto",
             },
             BackButton: {
-              display: "none",
+              onClick: () => {
+                window.location.href = "/";
+              },
             },
             Heading: {
-              children: "Blog App",
+              children: blog?.name,
             },
             HeadingLayout: {
-              alignItems: "center",
+              alignItems: "flex-start",
             },
             ContentPortal: {
               width: "100%",
               children: (
-                <BlogCardCollection
+                <PostCardCollection
                   templateColumns={{
                     base: "repeat(1, 1fr)",
-                    medium: "repeat(3, 1fr)",
+                    medium: "repeat(2, 1fr)",
                   }}
-                  overrideItems={({ item }: { item: Blog }) => ({
+                  overrideItems={({ item }: { item: Post }) => ({
                     className: "blog-card",
                     overrides: {
                       Info: {
-                        children: (item.Posts as any)?.length,
+                        children: (item.comments as any)?.length,
                       },
                       Title: {
                         overflow: "hidden",
@@ -97,3 +108,26 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps = async ({
+  params,
+}: GetServerSidePropsContext<{ id: string }>) => {
+  const id = params?.id;
+  if (!id)
+    return {
+      notFound: true,
+    };
+
+  const results = (await API.graphql({
+    query: getBlog,
+    variables: {
+      id: id,
+    },
+  })) as GraphQLResult<GetBlogQuery>;
+
+  return {
+    props: {
+      blog: results.data?.getBlog,
+    },
+  };
+};

@@ -1,17 +1,19 @@
 import { Blog } from "@/API";
 import {
-  BlogCardCollection,
+  BlogCreateForm,
   NavBar,
   NavLinkButtonCollection,
   PageContent,
 } from "@/ui-components";
+import PostCreateForm from "@/ui-components/PostCreateForm";
 import Head from "next/head";
+import React from "react";
 
-export default function Home() {
+const NewPost = () => {
   return (
     <>
       <Head>
-        <title>Blog App</title>
+        <title>Create New | Blog App</title>
         <meta
           name="description"
           content="Example Blog App built with AWS Amplify"
@@ -61,33 +63,22 @@ export default function Home() {
               display: "none",
             },
             Heading: {
-              children: "Blog App",
+              children: "Create New Post",
             },
             HeadingLayout: {
               alignItems: "center",
             },
             ContentPortal: {
               width: "100%",
+              margin: "0 auto",
+              alignItems: "center",
+              justifyContent: "center",
               children: (
-                <BlogCardCollection
-                  templateColumns={{
-                    base: "repeat(1, 1fr)",
-                    medium: "repeat(3, 1fr)",
+                <PostCreateForm
+                  onSubmit={(values) => {
+                    console.log({ values });
+                    return { ...values };
                   }}
-                  overrideItems={({ item }: { item: Blog }) => ({
-                    className: "blog-card",
-                    overrides: {
-                      Info: {
-                        children: (item.Posts as any)?.length,
-                      },
-                      Title: {
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                        display: "block",
-                      },
-                    },
-                  })}
                 />
               ),
             },
@@ -96,4 +87,6 @@ export default function Home() {
       </main>
     </>
   );
-}
+};
+
+export default NewPost;

@@ -1,17 +1,27 @@
-import { Blog } from "@/API";
+import { Blog, GetPostQuery, Post } from "@/API";
+import React from "react";
+import { GetServerSidePropsContext } from "next";
+import { getBlog, getPost } from "@/graphql/queries";
+import { API, GraphQLResult } from "@aws-amplify/api";
+import Head from "next/head";
 import {
-  BlogCardCollection,
   NavBar,
   NavLinkButtonCollection,
   PageContent,
+  PostDetail,
 } from "@/ui-components";
-import Head from "next/head";
+import CommentCreateForm from "@/ui-components/CommentCreateForm";
 
-export default function Home() {
+interface Props {
+  post: Post;
+}
+
+export default function PostDetailPage({ post }: Props) {
+  const title = `${post?.title} | Blog App`;
   return (
     <>
       <Head>
-        <title>Blog App</title>
+        <title>{title}</title>
         <meta
           name="description"
           content="Example Blog App built with AWS Amplify"
@@ -58,37 +68,31 @@ export default function Home() {
               margin: "5px auto",
             },
             BackButton: {
-              display: "none",
+              onClick: () => {
+                window.location.href = "/";
+              },
             },
             Heading: {
-              children: "Blog App",
+              children: post?.title,
             },
             HeadingLayout: {
-              alignItems: "center",
+              alignItems: "flex-start",
             },
             ContentPortal: {
               width: "100%",
               children: (
-                <BlogCardCollection
-                  templateColumns={{
-                    base: "repeat(1, 1fr)",
-                    medium: "repeat(3, 1fr)",
-                  }}
-                  overrideItems={({ item }: { item: Blog }) => ({
-                    className: "blog-card",
-                    overrides: {
-                      Info: {
-                        children: (item.Posts as any)?.length,
+                <>
+                  <PostDetail
+                    post={post}
+                    blog={post?.blog}
+                    overrides={{
+                      PostDetail: {
+                        width: "100%",
                       },
-                      Title: {
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                        display: "block",
-                      },
-                    },
-                  })}
-                />
+                    }}
+                  />
+                  <CommentCreateForm />
+                </>
               ),
             },
           }}
@@ -97,3 +101,26 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps = async ({
+  params,
+}: GetServerSidePropsContext<{ id: string }>) => {
+  const id = params?.id;
+  if (!id)
+    return {
+      notFound: true,
+    };
+
+  const results = (await API.graphql({
+    query: getPost,
+    variables: {
+      id: id,
+    },
+  })) as GraphQLResult<GetPostQuery>;
+
+  return {
+    props: {
+      post: results.data?.getPost,
+    },
+  };
+};

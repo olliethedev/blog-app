@@ -7,16 +7,17 @@ export const getBlog = /* GraphQL */ `
     getBlog(id: $id) {
       id
       name
-      posts {
+      Posts {
         items {
           id
           title
+          content
+          blogID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          blogPostsId
         }
         nextToken
         startedAt
@@ -39,7 +40,7 @@ export const listBlogs = /* GraphQL */ `
       items {
         id
         name
-        posts {
+        Posts {
           nextToken
           startedAt
         }
@@ -70,7 +71,7 @@ export const syncBlogs = /* GraphQL */ `
       items {
         id
         name
-        posts {
+        Posts {
           nextToken
           startedAt
         }
@@ -90,29 +91,18 @@ export const getPost = /* GraphQL */ `
     getPost(id: $id) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      comments {
+      content
+      blogID
+      Comments {
         items {
           id
           content
+          postID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          postCommentsId
         }
         nextToken
         startedAt
@@ -122,7 +112,6 @@ export const getPost = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      blogPostsId
     }
   }
 `;
@@ -136,16 +125,9 @@ export const listPosts = /* GraphQL */ `
       items {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
+        content
+        blogID
+        Comments {
           nextToken
           startedAt
         }
@@ -154,7 +136,6 @@ export const listPosts = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        blogPostsId
       }
       nextToken
       startedAt
@@ -177,16 +158,9 @@ export const syncPosts = /* GraphQL */ `
       items {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
+        content
+        blogID
+        Comments {
           nextToken
           startedAt
         }
@@ -195,7 +169,41 @@ export const syncPosts = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        blogPostsId
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const postsByBlogID = /* GraphQL */ `
+  query PostsByBlogID(
+    $blogID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelPostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    postsByBlogID(
+      blogID: $blogID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        title
+        content
+        blogID
+        Comments {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
       startedAt
@@ -206,36 +214,13 @@ export const getComment = /* GraphQL */ `
   query GetComment($id: ID!) {
     getComment(id: $id) {
       id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        blogPostsId
-      }
       content
+      postID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      postCommentsId
     }
   }
 `;
@@ -248,23 +233,13 @@ export const listComments = /* GraphQL */ `
     listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        post {
-          id
-          title
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          blogPostsId
-        }
         content
+        postID
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        postCommentsId
       }
       nextToken
       startedAt
@@ -286,23 +261,43 @@ export const syncComments = /* GraphQL */ `
     ) {
       items {
         id
-        post {
-          id
-          title
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          blogPostsId
-        }
         content
+        postID
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        postCommentsId
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const commentsByPostID = /* GraphQL */ `
+  query CommentsByPostID(
+    $postID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCommentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    commentsByPostID(
+      postID: $postID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        content
+        postID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
       startedAt

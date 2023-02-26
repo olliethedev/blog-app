@@ -7,16 +7,17 @@ export const onCreateBlog = /* GraphQL */ `
     onCreateBlog(filter: $filter) {
       id
       name
-      posts {
+      Posts {
         items {
           id
           title
+          content
+          blogID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          blogPostsId
         }
         nextToken
         startedAt
@@ -34,16 +35,17 @@ export const onUpdateBlog = /* GraphQL */ `
     onUpdateBlog(filter: $filter) {
       id
       name
-      posts {
+      Posts {
         items {
           id
           title
+          content
+          blogID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          blogPostsId
         }
         nextToken
         startedAt
@@ -61,16 +63,17 @@ export const onDeleteBlog = /* GraphQL */ `
     onDeleteBlog(filter: $filter) {
       id
       name
-      posts {
+      Posts {
         items {
           id
           title
+          content
+          blogID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          blogPostsId
         }
         nextToken
         startedAt
@@ -88,29 +91,18 @@ export const onCreatePost = /* GraphQL */ `
     onCreatePost(filter: $filter) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      comments {
+      content
+      blogID
+      Comments {
         items {
           id
           content
+          postID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          postCommentsId
         }
         nextToken
         startedAt
@@ -120,7 +112,6 @@ export const onCreatePost = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      blogPostsId
     }
   }
 `;
@@ -129,29 +120,18 @@ export const onUpdatePost = /* GraphQL */ `
     onUpdatePost(filter: $filter) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      comments {
+      content
+      blogID
+      Comments {
         items {
           id
           content
+          postID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          postCommentsId
         }
         nextToken
         startedAt
@@ -161,7 +141,6 @@ export const onUpdatePost = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      blogPostsId
     }
   }
 `;
@@ -170,29 +149,18 @@ export const onDeletePost = /* GraphQL */ `
     onDeletePost(filter: $filter) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      comments {
+      content
+      blogID
+      Comments {
         items {
           id
           content
+          postID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
-          postCommentsId
         }
         nextToken
         startedAt
@@ -202,7 +170,6 @@ export const onDeletePost = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      blogPostsId
     }
   }
 `;
@@ -210,36 +177,13 @@ export const onCreateComment = /* GraphQL */ `
   subscription OnCreateComment($filter: ModelSubscriptionCommentFilterInput) {
     onCreateComment(filter: $filter) {
       id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        blogPostsId
-      }
       content
+      postID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      postCommentsId
     }
   }
 `;
@@ -247,36 +191,13 @@ export const onUpdateComment = /* GraphQL */ `
   subscription OnUpdateComment($filter: ModelSubscriptionCommentFilterInput) {
     onUpdateComment(filter: $filter) {
       id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        blogPostsId
-      }
       content
+      postID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      postCommentsId
     }
   }
 `;
@@ -284,36 +205,13 @@ export const onDeleteComment = /* GraphQL */ `
   subscription OnDeleteComment($filter: ModelSubscriptionCommentFilterInput) {
     onDeleteComment(filter: $filter) {
       id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        comments {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        blogPostsId
-      }
       content
+      postID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      postCommentsId
     }
   }
 `;

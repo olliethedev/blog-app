@@ -25,14 +25,17 @@ export default function PostUpdateForm(props) {
   } = props;
   const initialValues = {
     title: "",
+    content: "",
   };
   const [title, setTitle] = React.useState(initialValues.title);
+  const [content, setContent] = React.useState(initialValues.content);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = postRecord
       ? { ...initialValues, ...postRecord }
       : initialValues;
     setTitle(cleanValues.title);
+    setContent(cleanValues.content);
     setErrors({});
   };
   const [postRecord, setPostRecord] = React.useState(post);
@@ -46,6 +49,7 @@ export default function PostUpdateForm(props) {
   React.useEffect(resetStateValues, [postRecord]);
   const validations = {
     title: [{ type: "Required" }],
+    content: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -73,6 +77,7 @@ export default function PostUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           title,
+          content,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -129,6 +134,7 @@ export default function PostUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               title: value,
+              content,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -142,6 +148,31 @@ export default function PostUpdateForm(props) {
         errorMessage={errors.title?.errorMessage}
         hasError={errors.title?.hasError}
         {...getOverrideProps(overrides, "title")}
+      ></TextField>
+      <TextField
+        label="Content"
+        isRequired={true}
+        isReadOnly={false}
+        value={content}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              content: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.content ?? value;
+          }
+          if (errors.content?.hasError) {
+            runValidationTasks("content", value);
+          }
+          setContent(value);
+        }}
+        onBlur={() => runValidationTasks("content", content)}
+        errorMessage={errors.content?.errorMessage}
+        hasError={errors.content?.hasError}
+        {...getOverrideProps(overrides, "content")}
       ></TextField>
       <Flex
         justifyContent="space-between"

@@ -4,12 +4,18 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as NavBar } from "./NavBar";
+export { default as BlogCardCollection } from "./BlogCardCollection";
+export { default as Review } from "./Review";
+export { default as PostCard } from "./PostCard";
+export { default as CommentCollection } from "./CommentCollection";
+export { default as PostCardCollection } from "./PostCardCollection";
+export { default as PageContent } from "./PageContent";
+export { default as NavLinkButton } from "./NavLinkButton";
+export { default as BlogCard } from "./BlogCard";
+export { default as NavLinkButtonCollection } from "./NavLinkButtonCollection";
 export { default as MyIcon } from "./MyIcon";
+export { default as PostDetail } from "./PostDetail";
+export { default as NavBar } from "./NavBar";
 export { default as studioTheme } from "./studioTheme";
 export { default as BlogCreateForm } from "./BlogCreateForm";
 export { default as BlogUpdateForm } from "./BlogUpdateForm";
-export { default as PostCreateForm } from "./PostCreateForm";
-export { default as PostUpdateForm } from "./PostUpdateForm";
-export { default as CommentCreateForm } from "./CommentCreateForm";
-export { default as CommentUpdateForm } from "./CommentUpdateForm";
