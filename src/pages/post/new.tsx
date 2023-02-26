@@ -72,7 +72,6 @@ const NewPost = () => {
                   width="100%"
                   maxWidth={600}
                   onSubmit={(values) => {
-                    console.log({ values });
                     return { ...values };
                   }}
                 />
