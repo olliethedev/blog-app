@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { Post, Blog } from "../models";
+import { Post } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { DividerProps, FlexProps, TextProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
@@ -14,7 +14,6 @@ export declare type PostDetailOverridesProps = {
     Content?: PrimitiveOverrideProps<FlexProps>;
     InfoLayout?: PrimitiveOverrideProps<FlexProps>;
     UserName?: PrimitiveOverrideProps<TextProps>;
-    Blog?: PrimitiveOverrideProps<TextProps>;
     Date?: PrimitiveOverrideProps<TextProps>;
     TextLayout?: PrimitiveOverrideProps<FlexProps>;
     Divider?: PrimitiveOverrideProps<DividerProps>;
@@ -22,7 +21,6 @@ export declare type PostDetailOverridesProps = {
 } & EscapeHatchProps;
 export declare type PostDetailProps = React.PropsWithChildren<Partial<FlexProps> & {
     post?: Post;
-    blog?: Blog;
 } & {
     overrides?: PostDetailOverridesProps | undefined | null;
 }>;

@@ -26,7 +26,7 @@ export default function Home() {
               wrap="wrap"
               justifyContent="center"
               gap={0}
-              overrideItems={({ item }: { item: Blog }) => ({
+              overrideItems={() => ({
                 minWidth: "max-content",
                 overrides: {
                   Button: {
@@ -81,10 +81,7 @@ export default function Home() {
                         children: (item.Posts as any)?.length,
                       },
                       Title: {
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                        display: "block",
+                        height: "auto",
                       },
                     },
                   })}
@@ -92,7 +89,7 @@ export default function Home() {
               ),
             },
           }}
-        ></PageContent>
+        />
       </main>
     </>
   );

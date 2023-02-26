@@ -10,8 +10,6 @@ body{
 }
 
 .blog-card:hover{
-  transform: scale(1.005);
-  transition: 0.1s;
+  border: 1px solid #9a9a9a!important;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2)!important;
 }

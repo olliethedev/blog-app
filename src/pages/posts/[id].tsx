@@ -89,13 +89,10 @@ export default function BlogDetail({ blog }: Props) {
                     className: "blog-card",
                     overrides: {
                       Info: {
-                        children: (item.comments as any)?.length,
+                        children: (item.Comments as any)?.length,
                       },
                       Title: {
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                        display: "block",
+                        height: "auto",
                       },
                     },
                   })}
@@ -103,7 +100,7 @@ export default function BlogDetail({ blog }: Props) {
               ),
             },
           }}
-        ></PageContent>
+        />
       </main>
     </>
   );

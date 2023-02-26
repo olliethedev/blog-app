@@ -1,16 +1,18 @@
-import { Blog, GetPostQuery, Post } from "@/API";
+import { GetPostQuery, Post } from "@/API";
 import React from "react";
 import { GetServerSidePropsContext } from "next";
-import { getBlog, getPost } from "@/graphql/queries";
+import { getPost } from "@/graphql/queries";
 import { API, GraphQLResult } from "@aws-amplify/api";
 import Head from "next/head";
 import {
+  CommentCollection,
   NavBar,
   NavLinkButtonCollection,
   PageContent,
   PostDetail,
 } from "@/ui-components";
 import CommentCreateForm from "@/ui-components/CommentCreateForm";
+import { Heading } from "@aws-amplify/ui-react";
 
 interface Props {
   post: Post;
@@ -36,7 +38,7 @@ export default function PostDetailPage({ post }: Props) {
               wrap="wrap"
               justifyContent="center"
               gap={0}
-              overrideItems={({ item }: { item: Blog }) => ({
+              overrideItems={() => ({
                 minWidth: "max-content",
                 overrides: {
                   Button: {
@@ -69,7 +71,7 @@ export default function PostDetailPage({ post }: Props) {
             },
             BackButton: {
               onClick: () => {
-                window.location.href = "/";
+                window.history.back();
               },
             },
             Heading: {
@@ -80,23 +82,42 @@ export default function PostDetailPage({ post }: Props) {
             },
             ContentPortal: {
               width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "medium",
               children: (
                 <>
                   <PostDetail
-                    post={post}
-                    blog={post?.blog}
+                    post={post as any}
                     overrides={{
                       PostDetail: {
                         width: "100%",
                       },
                     }}
                   />
-                  <CommentCreateForm />
+                  <Heading marginTop="large" textAlign="center" level={5}>
+                    Comments
+                  </Heading>
+                  <CommentCollection
+                    overrideItems={({ item }) => ({
+                      overrides: {
+                        Review: {
+                          width: "100%",
+                          maxWidth: 700,
+                          margin: "5px auto",
+                        },
+                      },
+                    })}
+                  />
+                  <Heading marginTop="large" level={5}>
+                    Add a Comment
+                  </Heading>
+                  <CommentCreateForm width="100%" maxWidth={700} />
                 </>
               ),
             },
           }}
-        ></PageContent>
+        />
       </main>
     </>
   );

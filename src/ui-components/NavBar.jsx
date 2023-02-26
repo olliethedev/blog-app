@@ -26,22 +26,7 @@ export default function NavBar(props) {
   const variants = [
     {
       overrides: {
-        Shape36602555: {},
-        Shape36602556: {},
-        "Rectangle-path36602557": {},
-        "Rectangle-path36602558": {},
-        "Rectangle-path36602559": {},
-        "Rectangle-path36602560": {},
-        "Rectangle-path36602561": {},
-        "Rectangle-path36602562": {},
-        "Rectangle-path36602563": {},
-        "Rectangle-path36602564": {},
-        Oval: {},
-        "Rectangle-path36602567": {},
-        "Rectangle-path36602568": {},
-        Group: {},
-        "041---Books": {},
-        "Page-1": {},
+        Vector: {},
         "market 1": {},
         Name: {},
         Logo: {},
@@ -67,57 +52,14 @@ export default function NavBar(props) {
     },
     {
       overrides: {
-        Shape36602555: {},
-        Shape36602556: {},
-        "Rectangle-path36602557": {},
-        "Rectangle-path36602558": {},
-        "Rectangle-path36602559": {
+        Vector: {
           viewBox: {
             minX: 0,
             minY: 0,
-            width: 26.18408203125,
-            height: 5.344818115234375,
+            width: 28.123779296875,
+            height: 29.9310302734375,
           },
         },
-        "Rectangle-path36602560": {
-          viewBox: {
-            minX: 0,
-            minY: 0,
-            width: 1.939453125,
-            height: 5.344818115234375,
-          },
-        },
-        "Rectangle-path36602561": {
-          viewBox: {
-            minX: 0,
-            minY: 0,
-            width: 1.939453125,
-            height: 5.344818115234375,
-          },
-        },
-        "Rectangle-path36602562": {
-          viewBox: {
-            minX: 0,
-            minY: 0,
-            width: 11.637451171875,
-            height: 3.2069091796875,
-          },
-        },
-        "Rectangle-path36602563": {},
-        "Rectangle-path36602564": {},
-        Oval: {
-          viewBox: {
-            minX: 0,
-            minY: 0,
-            width: 8.72802734375,
-            height: 3.2069091796875,
-          },
-        },
-        "Rectangle-path36602567": {},
-        "Rectangle-path36602568": {},
-        Group: {},
-        "041---Books": {},
-        "Page-1": {},
         "market 1": {},
         Name: {},
         Logo: {},
@@ -183,6 +125,7 @@ export default function NavBar(props) {
     }),
     overridesProp || {}
   );
+  const logoOnClick = useNavigateAction({ type: "url", url: "/" });
   const mobileAddNewButtonOnClick = useNavigateAction({
     type: "url",
     url: "/post/new",
@@ -246,6 +189,9 @@ export default function NavBar(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             display="flex"
+            onClick={() => {
+              logoOnClick();
+            }}
             {...getOverrideProps(overrides, "Logo")}
           >
             <View
@@ -262,10 +208,82 @@ export default function NavBar(props) {
               backgroundColor="rgba(255,255,255,1)"
               {...getOverrideProps(overrides, "market 1")}
             >
-              <View
-                padding="0px 0px 0px 0px"
+              <Icon
                 width="28.12px"
                 height="29.93px"
+                viewBox={{
+                  minX: 0,
+                  minY: 0,
+                  width: 28.123779296875,
+                  height: 29.931045532226562,
+                }}
+                paths={[
+                  {
+                    d: "M24.2445 6.94827L24.2445 13.3621L3.93198 13.3621C2.56459 13.3621 1.45467 11.9254 1.45467 10.1552C1.45467 8.38496 2.56459 6.94827 3.93198 6.94827L24.2445 6.94827Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M25.2143 13.8966C25.2127 14.4862 24.7795 14.9638 24.2446 14.9655L4.36402 14.9655C1.95384 14.9655 7.59296e-08 12.8119 7.59296e-08 10.1552C7.59296e-08 7.49849 1.95384 5.34482 4.36402 5.34482L24.2446 5.34482C24.7802 5.34482 25.2143 5.82342 25.2143 6.41379C25.2143 7.00417 24.7802 7.48276 24.2446 7.48276L4.36402 7.48276C3.02503 7.48276 1.93956 8.67924 1.93956 10.1552C1.93956 11.6311 3.02503 12.8276 4.36402 12.8276L24.2446 12.8276C24.7795 12.8294 25.2127 13.3069 25.2143 13.8966Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M27.1539 14.9655L2.90935 14.9655C2.37375 14.9655 1.93957 15.4441 1.93957 16.0345L1.93957 21.3793C1.93957 21.9697 2.37375 22.4483 2.90935 22.4483L27.1539 22.4483C27.6895 22.4483 28.1237 21.9697 28.1237 21.3793L28.1237 16.0345C28.1237 15.4441 27.6895 14.9655 27.1539 14.9655Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M25.2143 22.4483L0.969782 22.4483C0.434186 22.4483 0 22.9269 0 23.5173L0 28.8621C0 29.4525 0.434186 29.931 0.969782 29.931L25.2143 29.931C25.7499 29.931 26.1841 29.4525 26.1841 28.8621L26.1841 23.5173C26.1841 22.9269 25.7499 22.4483 25.2143 22.4483Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M25.2143 2.6077e-07L0.969782 2.6077e-07C0.434186 2.6077e-07 0 0.478592 0 1.06897L0 4.27586C0 4.86624 0.434186 5.34483 0.969782 5.34483L25.2143 5.34483C25.7499 5.34483 26.1841 4.86624 26.1841 4.27586L26.1841 1.06897C26.1841 0.478592 25.7499 2.6077e-07 25.2143 2.6077e-07Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M3.87913 0L5.8187 0L5.8187 5.34483L3.87913 5.34483L3.87913 0Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M20.3654 0L22.305 0L22.305 5.34483L20.3654 5.34483L20.3654 0Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M20.3654 17.1035L9.69783 17.1035C9.43003 17.1035 9.21294 17.3428 9.21294 17.6379L9.21294 19.7759C9.21294 20.0711 9.43003 20.3104 9.69783 20.3104L20.3654 20.3104C20.6332 20.3104 20.8503 20.0711 20.8503 19.7759L20.8503 17.6379C20.8503 17.3428 20.6332 17.1035 20.3654 17.1035Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M23.2748 14.9655L24.2446 14.9655L24.2446 22.4483L23.2748 22.4483L23.2748 14.9655Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M5.8187 14.9655L6.78848 14.9655L6.78848 22.4483L5.8187 22.4483L5.8187 14.9655Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M13.0921 27.7931C15.5022 27.7931 17.4561 27.0752 17.4561 26.1897C17.4561 25.3041 15.5022 24.5862 13.0921 24.5862C10.6819 24.5862 8.72804 25.3041 8.72804 26.1897C8.72804 27.0752 10.6819 27.7931 13.0921 27.7931Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M2.90935 22.4483L4.84892 22.4483L4.84892 29.931L2.90935 29.931L2.90935 22.4483Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                  {
+                    d: "M21.3352 22.4483L23.2748 22.4483L23.2748 29.931L21.3352 29.931L21.3352 22.4483Z",
+                    fill: "rgba(242,156,31,1)",
+                    fillRule: "nonzero",
+                  },
+                ]}
                 display="block"
                 gap="unset"
                 alignItems="unset"
@@ -275,392 +293,8 @@ export default function NavBar(props) {
                 bottom="1.72%"
                 left="0%"
                 right="0%"
-                {...getOverrideProps(overrides, "Page-1")}
-              >
-                <View
-                  padding="0px 0px 0px 0px"
-                  width="28.12px"
-                  height="29.93px"
-                  display="block"
-                  gap="unset"
-                  alignItems="unset"
-                  justifyContent="unset"
-                  position="absolute"
-                  top="0%"
-                  bottom="0%"
-                  left="0%"
-                  right="0%"
-                  {...getOverrideProps(overrides, "041---Books")}
-                >
-                  <Icon
-                    width="22.79px"
-                    height="6.41px"
-                    viewBox={{
-                      minX: 0,
-                      minY: 0,
-                      width: 22.789794921875,
-                      height: 6.413787841796875,
-                    }}
-                    paths={[
-                      {
-                        d: "M22.7899 0L22.7899 6.41379L2.47731 6.41379C1.10992 6.41379 0 4.9771 0 3.2069C0 1.43669 1.10992 0 2.47731 0L22.7899 0Z",
-                        fill: "rgba(245,239,202,1)",
-                        fillRule: "nonzero",
-                      },
-                    ]}
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="23.21%"
-                    bottom="55.36%"
-                    left="5.17%"
-                    right="13.79%"
-                    {...getOverrideProps(overrides, "Shape36602555")}
-                  ></Icon>
-                  <Icon
-                    width="25.21px"
-                    height="9.62px"
-                    viewBox={{
-                      minX: 0,
-                      minY: 0,
-                      width: 25.21435546875,
-                      height: 9.620697021484375,
-                    }}
-                    paths={[
-                      {
-                        d: "M25.2143 8.55173C25.2127 9.14137 24.7795 9.61894 24.2446 9.6207L4.36402 9.6207C1.95384 9.6207 0 7.46703 0 4.81035C0 2.15367 1.95384 5.34483e-08 4.36402 0L24.2446 0C24.7802 0 25.2143 0.478593 25.2143 1.06897C25.2143 1.65934 24.7802 2.13793 24.2446 2.13793L4.36402 2.13793C3.02503 2.13793 1.93956 3.33441 1.93956 4.81035C1.93956 6.28628 3.02503 7.48277 4.36402 7.48277L24.2446 7.48277C24.7795 7.48453 25.2127 7.96209 25.2143 8.55173Z",
-                        fill: "rgba(242,156,31,1)",
-                        fillRule: "nonzero",
-                      },
-                    ]}
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="17.86%"
-                    bottom="50%"
-                    left="0%"
-                    right="10.34%"
-                    {...getOverrideProps(overrides, "Shape36602556")}
-                  ></Icon>
-                  <Icon
-                    width="26.18px"
-                    height="7.48px"
-                    viewBox={{
-                      minX: 0,
-                      minY: 0,
-                      width: 26.18408203125,
-                      height: 7.482757568359375,
-                    }}
-                    paths={[
-                      {
-                        d: "M25.2143 0L0.969782 0C0.434186 0 0 0.478592 0 1.06897L0 6.41379C0 7.00417 0.434186 7.48276 0.969782 7.48276L25.2143 7.48276C25.7499 7.48276 26.1841 7.00417 26.1841 6.41379L26.1841 1.06897C26.1841 0.478592 25.7499 0 25.2143 0Z",
-                        fill: "rgba(125,101,153,1)",
-                        fillRule: "nonzero",
-                      },
-                    ]}
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="50%"
-                    bottom="25%"
-                    left="6.9%"
-                    right="0%"
-                    {...getOverrideProps(overrides, "Rectangle-path36602557")}
-                  ></Icon>
-                  <Icon
-                    width="26.18px"
-                    height="7.48px"
-                    viewBox={{
-                      minX: 0,
-                      minY: 0,
-                      width: 26.18408203125,
-                      height: 7.482757568359375,
-                    }}
-                    paths={[
-                      {
-                        d: "M25.2143 0L0.969782 0C0.434186 0 0 0.478592 0 1.06897L0 6.41379C0 7.00417 0.434186 7.48276 0.969782 7.48276L25.2143 7.48276C25.7499 7.48276 26.1841 7.00417 26.1841 6.41379L26.1841 1.06897C26.1841 0.478592 25.7499 0 25.2143 0Z",
-                        fill: "rgba(230,76,60,1)",
-                        fillRule: "nonzero",
-                      },
-                    ]}
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="75%"
-                    bottom="0%"
-                    left="0%"
-                    right="6.9%"
-                    {...getOverrideProps(overrides, "Rectangle-path36602558")}
-                  ></Icon>
-                  <Icon
-                    width="26.18px"
-                    height="5.34px"
-                    viewBox={{
-                      minX: 0,
-                      minY: 0,
-                      width: 26.18408203125,
-                      height: 5.3448333740234375,
-                    }}
-                    paths={[
-                      {
-                        d: "M25.2143 0L0.969782 0C0.434186 0 0 0.478592 0 1.06897L0 4.27586C0 4.86624 0.434186 5.34483 0.969782 5.34483L25.2143 5.34483C25.7499 5.34483 26.1841 4.86624 26.1841 4.27586L26.1841 1.06897C26.1841 0.478592 25.7499 0 25.2143 0Z",
-                        fill: "rgba(59,151,211,1)",
-                        fillRule: "nonzero",
-                      },
-                    ]}
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="0%"
-                    bottom="82.14%"
-                    left="0%"
-                    right="6.9%"
-                    {...getOverrideProps(overrides, "Rectangle-path36602559")}
-                  ></Icon>
-                  <Icon
-                    width="1.94px"
-                    height="5.34px"
-                    viewBox={{
-                      minX: 0,
-                      minY: 0,
-                      width: 1.939453125,
-                      height: 5.3448333740234375,
-                    }}
-                    paths={[
-                      {
-                        d: "M0 0L1.93957 0L1.93957 5.34483L0 5.34483L0 0Z",
-                        fill: "rgba(103,185,204,1)",
-                        fillRule: "nonzero",
-                      },
-                    ]}
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="0%"
-                    bottom="82.14%"
-                    left="13.79%"
-                    right="79.31%"
-                    {...getOverrideProps(overrides, "Rectangle-path36602560")}
-                  ></Icon>
-                  <Icon
-                    width="1.94px"
-                    height="5.34px"
-                    viewBox={{
-                      minX: 0,
-                      minY: 0,
-                      width: 1.939453125,
-                      height: 5.3448333740234375,
-                    }}
-                    paths={[
-                      {
-                        d: "M0 0L1.93957 0L1.93957 5.34483L0 5.34483L0 0Z",
-                        fill: "rgba(103,185,204,1)",
-                        fillRule: "nonzero",
-                      },
-                    ]}
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="0%"
-                    bottom="82.14%"
-                    left="72.41%"
-                    right="20.69%"
-                    {...getOverrideProps(overrides, "Rectangle-path36602561")}
-                  ></Icon>
-                  <Icon
-                    width="11.64px"
-                    height="3.21px"
-                    viewBox={{
-                      minX: 0,
-                      minY: 0,
-                      width: 11.637451171875,
-                      height: 3.2068939208984375,
-                    }}
-                    paths={[
-                      {
-                        d: "M11.1525 0L0.484891 0C0.217093 0 0 0.239296 0 0.534483L0 2.67241C0 2.9676 0.217093 3.2069 0.484891 3.2069L11.1525 3.2069C11.4203 3.2069 11.6374 2.9676 11.6374 2.67241L11.6374 0.534483C11.6374 0.239296 11.4203 0 11.1525 0Z",
-                        fill: "rgba(159,201,211,1)",
-                        fillRule: "nonzero",
-                      },
-                    ]}
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="57.14%"
-                    bottom="32.14%"
-                    left="32.76%"
-                    right="25.86%"
-                    {...getOverrideProps(overrides, "Rectangle-path36602562")}
-                  ></Icon>
-                  <Icon
-                    width="0.97px"
-                    height="7.48px"
-                    viewBox={{
-                      minX: 0,
-                      minY: 0,
-                      width: 0.9697265625,
-                      height: 7.482757568359375,
-                    }}
-                    paths={[
-                      {
-                        d: "M0 0L0.969783 0L0.969783 7.48276L0 7.48276L0 0Z",
-                        fill: "rgba(180,154,202,1)",
-                        fillRule: "nonzero",
-                      },
-                    ]}
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="50%"
-                    bottom="25%"
-                    left="82.76%"
-                    right="13.79%"
-                    {...getOverrideProps(overrides, "Rectangle-path36602563")}
-                  ></Icon>
-                  <Icon
-                    width="0.97px"
-                    height="7.48px"
-                    viewBox={{
-                      minX: 0,
-                      minY: 0,
-                      width: 0.9697265625,
-                      height: 7.482757568359375,
-                    }}
-                    paths={[
-                      {
-                        d: "M0 0L0.969783 0L0.969783 7.48276L0 7.48276L0 0Z",
-                        fill: "rgba(180,154,202,1)",
-                        fillRule: "nonzero",
-                      },
-                    ]}
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="50%"
-                    bottom="25%"
-                    left="20.69%"
-                    right="75.86%"
-                    {...getOverrideProps(overrides, "Rectangle-path36602564")}
-                  ></Icon>
-                  <Icon
-                    width="8.73px"
-                    height="3.21px"
-                    viewBox={{
-                      minX: 0,
-                      minY: 0,
-                      width: 8.72802734375,
-                      height: 3.2068939208984375,
-                    }}
-                    paths={[
-                      {
-                        d: "M4.36402 3.2069C6.7742 3.2069 8.72804 2.48901 8.72804 1.60345C8.72804 0.717888 6.7742 0 4.36402 0C1.95384 0 0 0.717888 0 1.60345C0 2.48901 1.95384 3.2069 4.36402 3.2069Z",
-                        fill: "rgba(245,239,202,1)",
-                        fillRule: "nonzero",
-                      },
-                    ]}
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="82.14%"
-                    bottom="7.14%"
-                    left="31.03%"
-                    right="37.93%"
-                    {...getOverrideProps(overrides, "Oval")}
-                  ></Icon>
-                  <View
-                    padding="0px 0px 0px 0px"
-                    width="20.37px"
-                    height="7.48px"
-                    display="block"
-                    gap="unset"
-                    alignItems="unset"
-                    justifyContent="unset"
-                    position="absolute"
-                    top="75%"
-                    bottom="0%"
-                    left="10.34%"
-                    right="17.24%"
-                    {...getOverrideProps(overrides, "Group")}
-                  >
-                    <Icon
-                      width="1.94px"
-                      height="7.48px"
-                      viewBox={{
-                        minX: 0,
-                        minY: 0,
-                        width: 1.939453125,
-                        height: 7.482757568359375,
-                      }}
-                      paths={[
-                        {
-                          d: "M0 0L1.93957 0L1.93957 7.48276L0 7.48276L0 0Z",
-                          fill: "rgba(242,156,31,1)",
-                          fillRule: "nonzero",
-                        },
-                      ]}
-                      display="block"
-                      gap="unset"
-                      alignItems="unset"
-                      justifyContent="unset"
-                      position="absolute"
-                      top="0%"
-                      bottom="0%"
-                      left="0%"
-                      right="90.48%"
-                      {...getOverrideProps(overrides, "Rectangle-path36602567")}
-                    ></Icon>
-                    <Icon
-                      width="1.94px"
-                      height="7.48px"
-                      viewBox={{
-                        minX: 0,
-                        minY: 0,
-                        width: 1.939453125,
-                        height: 7.482757568359375,
-                      }}
-                      paths={[
-                        {
-                          d: "M0 0L1.93957 0L1.93957 7.48276L0 7.48276L0 0Z",
-                          fill: "rgba(242,156,31,1)",
-                          fillRule: "nonzero",
-                        },
-                      ]}
-                      display="block"
-                      gap="unset"
-                      alignItems="unset"
-                      justifyContent="unset"
-                      position="absolute"
-                      top="0%"
-                      bottom="0%"
-                      left="90.48%"
-                      right="0%"
-                      {...getOverrideProps(overrides, "Rectangle-path36602568")}
-                    ></Icon>
-                  </View>
-                </View>
-              </View>
+                {...getOverrideProps(overrides, "Vector")}
+              ></Icon>
             </View>
             <Text
               fontFamily="Inter"

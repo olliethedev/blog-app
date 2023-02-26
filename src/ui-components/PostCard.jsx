@@ -28,7 +28,6 @@ export default function PostCard(props) {
       overflow="hidden"
       position="relative"
       border="1px SOLID rgba(229,231,235,1)"
-      boxShadow="0px 2px 4px rgba(0, 0, 0, 0.15000000596046448)"
       borderRadius="12px"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"

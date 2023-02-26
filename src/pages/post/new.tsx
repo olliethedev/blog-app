@@ -1,13 +1,7 @@
-import { Blog } from "@/API";
-import {
-  BlogCreateForm,
-  NavBar,
-  NavLinkButtonCollection,
-  PageContent,
-} from "@/ui-components";
-import PostCreateForm from "@/ui-components/PostCreateForm";
-import Head from "next/head";
 import React from "react";
+import Head from "next/head";
+import { NavBar, NavLinkButtonCollection, PageContent } from "@/ui-components";
+import PostCreateForm from "@/ui-components/PostCreateForm";
 
 const NewPost = () => {
   return (
@@ -28,7 +22,7 @@ const NewPost = () => {
               wrap="wrap"
               justifyContent="center"
               gap={0}
-              overrideItems={({ item }: { item: Blog }) => ({
+              overrideItems={() => ({
                 minWidth: "max-content",
                 overrides: {
                   Button: {
@@ -75,6 +69,8 @@ const NewPost = () => {
               justifyContent: "center",
               children: (
                 <PostCreateForm
+                  width="100%"
+                  maxWidth={600}
                   onSubmit={(values) => {
                     console.log({ values });
                     return { ...values };
@@ -83,7 +79,7 @@ const NewPost = () => {
               ),
             },
           }}
-        ></PageContent>
+        />
       </main>
     </>
   );

@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Divider, Flex, Text } from "@aws-amplify/ui-react";
 export default function PostDetail(props) {
-  const { post, blog, overrides, ...rest } = props;
+  const { post, overrides, ...rest } = props;
   return (
     <Flex
       gap="0"
@@ -27,13 +27,14 @@ export default function PostDetail(props) {
       <Flex
         gap="12px"
         direction="column"
-        width="1456px"
+        width="unset"
         height="unset"
         justifyContent="flex-start"
         alignItems="flex-start"
         grow="1"
         shrink="1"
         basis="0"
+        alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Content")}
@@ -71,27 +72,6 @@ export default function PostDetail(props) {
             whiteSpace="pre-wrap"
             children="Bob Smith"
             {...getOverrideProps(overrides, "UserName")}
-          ></Text>
-          <Text
-            fontFamily="Inter"
-            fontSize="12px"
-            fontWeight="400"
-            color="rgba(143,152,168,1)"
-            lineHeight="14.522727012634277px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children={blog?.name}
-            {...getOverrideProps(overrides, "Blog")}
           ></Text>
           <Text
             fontFamily="Inter"
