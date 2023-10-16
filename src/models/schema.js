@@ -181,7 +181,7 @@ export const schema = {
                     "name": "content",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "postID": {
@@ -242,6 +242,6 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "codegenVersion": "3.3.5",
-    "version": "4090a833f44ef29dd12005cab0b1a3b2"
+    "codegenVersion": "3.4.4",
+    "version": "b236497091809ece948da7b3275a2b76"
 };

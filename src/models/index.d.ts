@@ -76,7 +76,7 @@ type EagerComment = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly content: string;
+  readonly content?: string | null;
   readonly postID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -88,7 +88,7 @@ type LazyComment = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly content: string;
+  readonly content?: string | null;
   readonly postID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

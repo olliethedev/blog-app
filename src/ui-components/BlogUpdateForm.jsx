@@ -14,7 +14,7 @@ import { DataStore } from "aws-amplify";
 export default function BlogUpdateForm(props) {
   const {
     id: idProp,
-    blog,
+    blog: blogModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -35,14 +35,16 @@ export default function BlogUpdateForm(props) {
     setName(cleanValues.name);
     setErrors({});
   };
-  const [blogRecord, setBlogRecord] = React.useState(blog);
+  const [blogRecord, setBlogRecord] = React.useState(blogModelProp);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = idProp ? await DataStore.query(Blog, idProp) : blog;
+      const record = idProp
+        ? await DataStore.query(Blog, idProp)
+        : blogModelProp;
       setBlogRecord(record);
     };
     queryData();
-  }, [idProp, blog]);
+  }, [idProp, blogModelProp]);
   React.useEffect(resetStateValues, [blogRecord]);
   const validations = {
     name: [{ type: "Required" }],
@@ -52,9 +54,10 @@ export default function BlogUpdateForm(props) {
     currentValue,
     getDisplayValue
   ) => {
-    const value = getDisplayValue
-      ? getDisplayValue(currentValue)
-      : currentValue;
+    const value =
+      currentValue && getDisplayValue
+        ? getDisplayValue(currentValue)
+        : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -98,8 +101,8 @@ export default function BlogUpdateForm(props) {
         }
         try {
           Object.entries(modelFields).forEach(([key, value]) => {
-            if (typeof value === "string" && value.trim() === "") {
-              modelFields[key] = undefined;
+            if (typeof value === "string" && value === "") {
+              modelFields[key] = null;
             }
           });
           await DataStore.save(
@@ -154,7 +157,7 @@ export default function BlogUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || blog)}
+          isDisabled={!(idProp || blogModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -166,7 +169,7 @@ export default function BlogUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || blog) ||
+              !(idProp || blogModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}

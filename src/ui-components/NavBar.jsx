@@ -63,7 +63,7 @@ export default function NavBar(props) {
         "market 1": {},
         Name: {},
         Logo: {},
-        MobileAddNewButton: {},
+        MobileAddNewButton: { variation: "primary" },
         LogoLayout: { justifyContent: "space-between" },
         SearchField: {},
         SearchInput: { width: "unset", alignSelf: "stretch" },
